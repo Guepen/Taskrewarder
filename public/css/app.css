@@ -3,7 +3,6 @@ body{
 }
 .navbar{
     background-color: orange;
-    margin-bottom: 0;
     color: #ffffff!important;
 }
 
@@ -34,3 +33,8 @@ body{
     color: #ffffff!important;
     font-weight: 600;
 }
+
+.white{
+  color: #ffffff;
+}
+

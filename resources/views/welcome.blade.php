@@ -15,7 +15,7 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
     <div class="text-center">
-       <a class="btn btn-lg btn-success">Logga in <i class="fa fa-sign-in fa-fw"></i></a>
+       <a href="login" class="btn btn-lg btn-success">Logga in <i class="fa fa-sign-in fa-fw"></i></a>
        <a class="btn btn-lg btn-info">Registera dig <i class="fa fa-user-plus fa-fw"></i></a>
        </div>
     </div>

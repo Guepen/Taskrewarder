@@ -13,9 +13,10 @@
 
 Route::get('/', 'WelcomeController@index');
 
-Route::get('/login', 'Auth\AuthController@index');
+Route::get('/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
+Route::post('login', ['uses' => 'Auth\AuthController@postLogin']);
 
-Route::get('home', 'HomeController@index');
+Route::get('/home',['as' => 'home', 'uses' =>  'HomeController@index']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
