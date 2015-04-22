@@ -14,9 +14,11 @@
 Route::get('/', 'WelcomeController@index');
 
 Route::get('/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
-Route::post('login', ['uses' => 'Auth\AuthController@postLogin']);
+Route::post('login', ['uses' => 'Auth\AuthController@postLogin'])->before('csrf');;
 
-Route::get('/home',['as' => 'home', 'uses' =>  'HomeController@index']);
+Route::get('/register', ['as' => 'register', 'uses' => 'Auth\AuthController@getRegister']);
+
+Route::get('/home',['as' => 'home', 'uses' =>  'HomeController@index'])->before('auth');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

@@ -65,4 +65,8 @@ class AuthController extends Controller {
         return Redirect::route('home');
     }
 
+    public function getRegister(){
+        return view('auth/register');
+    }
+
 }
