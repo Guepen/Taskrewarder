@@ -1,6 +1,7 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\profile;
 
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller {
 
@@ -38,9 +39,38 @@ class HomeController extends Controller {
                 $completedTasks++;
             }
         }
+
 		return view('profile/home', array(
-            'completedTasks' => $completedTasks
+            'completedTasks' => $completedTasks,
+            'rank' => $this->getUserRank($completedTasks)
         ));
 	}
+
+    public function getTaskList(){
+        $tasks = Auth::user()->getUserTasks;
+        $undoneTasks = array();
+
+        foreach($tasks as $task){
+            if($task->done == false){
+                $undoneTasks[] = $task;
+            }
+        }
+
+        return view('profile/taskList', array(
+            'tasks' => $undoneTasks
+        ));
+    }
+
+
+
+    private function getUserRank($completedTasks){
+        if($completedTasks < 10){
+            return 'Latmask';
+        } else if($completedTasks < 25){
+            return 'Vardagssysslare';
+        } else{
+            return 'Något annat';
+        }
+    }
 
 }
