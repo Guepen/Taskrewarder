@@ -15,11 +15,9 @@ class HomeController extends Controller {
 	|
 	*/
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
+    /**
+     *
+     */
 	public function __construct()
 	{
 		$this->middleware('auth');
@@ -33,8 +31,15 @@ class HomeController extends Controller {
 	public function index()
 	{
         $tasks = Auth::user()->getUserTasks;
-		return view('home', array(
-            'tasks' => $tasks
+        $completedTasks = 0;
+
+        foreach($tasks as $task){
+            if($task->done){
+                $completedTasks++;
+            }
+        }
+		return view('profile/home', array(
+            'completedTasks' => $completedTasks
         ));
 	}
 

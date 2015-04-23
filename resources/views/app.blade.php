@@ -9,9 +9,8 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.min.css" rel="stylesheet">
 
-    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.min.css" rel="stylesheet">
-    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/roboto.min.css" rel="stylesheet">
     <link href="{{URL::asset('/css/app.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('/css/materialdesignicons.min.css')}}" rel="stylesheet" media="all">
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
@@ -31,7 +30,8 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="{{ url('/') }}">Taskrewarder</a>
+				<a class="navbar-brand" href="{{ url('/') }}">Taskrewarder <i class="mdi mdi-2x mdi-home"></i></a>
+
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -39,8 +39,15 @@
 					@if (Auth::guest())
 						<li><a href="{{ url('/auth/login') }}">Logga in</a></li>
 					@else
+
+                        <li>
+                            <a href="#"><i class="mdi mdi-2x mdi-email"></i> {{count(Auth::user()->getUserTasks)}}</a>
+                        </li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <i class="mdi mdi-2x mdi-account-box"></i> {{ Auth::user()->name }} <span class="caret"></span>
+
+                            </a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="{{ url('/auth/logout') }}">Logga ut</a></li>
 							</ul>
@@ -49,12 +56,13 @@
 				</ul>
 			</div>
 	</nav>
-	<div class="container-fluid">
+	<div id="wrapper" class="container-fluid">
 
 	@yield('content')
 	</div>
 
 	<!-- Scripts -->
+    <script src="{{URL::asset('/js/app.js')}}"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.min.js"></script>
